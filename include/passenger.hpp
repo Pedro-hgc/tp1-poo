@@ -6,9 +6,15 @@ class Passenger : public Person{
         std :: string ticketNumber;
         std :: string seatAssignment;
     public:
-        Passenger(const std:: string& name, int age, const std::string& ticket, string seatAssignment);
+        PassengetPassenger(const std:: string& name, int age,  const std::string& ticket, const std::string& cpf);
         virtual ~Passenger() = default;
+        std::string serializer() const;
+        
+        std::string Passenger::getCPF() const;
 
+        void Passenger::setCPF(const std::string cpf);
+        
+        
         //Passenger-Specific methods
         void board() const;
         virtual void displayInfo() const override;

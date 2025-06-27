@@ -63,9 +63,9 @@ std::string Airplane::serializer() const {
 }
 
 void Airplane::showDetails() const {
-    std::cout << "Airplane Code: "  << cod << std::endl;
-    std::cout << "Airplane Model: "  << model << std::endl;
-    std::cout << "Airplane Capacity: "  << capacity << std::endl;
-    std::cout << "Airplane Medium Velocity: "  << mediumVelocity << std::endl;
-    std::cout << "Airplane Autonomy Hours: "  << autonomyHours << std::endl;
+    std::cout << "Código do avião: "  << cod << std::endl;
+    std::cout << "Modelo do avião: "  << model << std::endl;
+    std::cout << "Capacidade do avião: "  << capacity << std::endl;
+    std::cout << "Velocidade Media do avião: "  << mediumVelocity << std::endl;
+    std::cout << "Autonomia do avião"  << autonomyHours << std::endl;
 }

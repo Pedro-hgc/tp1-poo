@@ -1,15 +1,14 @@
 #include <iostream>
-#include "pilot.hpp"
-using namespace std
+#include "../include/pilot.hpp"
+using namespace std;
 
-class Pilot : public Person{
-    private:
-        std :: licenseMNumber;
-        inf flighthours;
-    public:
-        Pilot(const std:: string& name, int age, const std :: string& license, int hours);
+
+    Pilot::Pilot(const string& name, int age, const string& license, int hours):Person(name,age),licenseNumber(license), flightHours(hours){}
+    void Pilot::fly() const{
+        cout<<name <<" está pilotando o avião! ( Licença: "<<licenseNumber<< " ) "<<endl;
+    }
         
-        //Pilot-specifc methods        
-        void fly()const;
-        void displayInfo() const override;
-};
+    void Pilot::displayInfo() const{
+        Person::displayInfo();
+        cout<<"Licença: "<< licenseNumber << ", Horas de Vôo: "<< flightHours<< endl;
+    }

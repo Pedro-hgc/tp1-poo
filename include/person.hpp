@@ -1,10 +1,13 @@
-#pragma once 
-
+#pragma once
+#include <iostream>
+using namespace std;
 class Person{
     protected:
-        std :: string name;
+        string name;
+        int age;
     public:
-        Person(const std:: string& name);
+    
+        Person(const string& name, int age);
         virtual ~Person() = default;
 
         //Getters        

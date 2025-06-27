@@ -11,4 +11,4 @@ Person::Person(const string& name, int age) : name(name), age(age){}
 
     void Person::displayInfo()const{
         std::cout << "Nome: "<< name <<  ", Idade: " << age << endl;
-    }
+}

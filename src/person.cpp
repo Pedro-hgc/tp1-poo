@@ -17,3 +17,4 @@ void Person::setAge(int age) { this->age = age; }
 void Person::displayInfo() const {
     std::cout << "Nome: " << name << "\nIdade: " << age << std::endl;
 }
+

@@ -2,6 +2,7 @@
 #include"person.hpp"
 
 class Pilot : public Person{
+
     private:
         std ::string licenseNumber;
         std ::string registration;

@@ -4,6 +4,7 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 Passenger::Passenger(const string& name, int age, const string& ticket, const string cpf): 
                         Person(name,age), ticketNumber(ticket), cpf(cpf){}
 
@@ -28,3 +29,16 @@ std::string Passenger::serializer() const {
 
     return oss.str();
 }
+=======
+Passenger::Passenger(const string& name, int age, const string& ticket, string seat)
+:Person(name,age), ticketNumber(ticket), seatAssignment(seat){}
+
+void Passenger:: board() const{
+    cout << name << " está embarcando com o ticket: " << ticketNumber << " Cadeira: ( " << seatAssignment <<" )"<<endl;
+}
+
+void Passenger :: displayInfo() const{
+    Person::displayInfo();
+    cout<< "Ticket: " << ticketNumber << " Cadeira: ( " << seatAssignment <<" )"<<endl;
+}
+>>>>>>> 7b23416179e9ab4c68d001c3bd221a17239e135d

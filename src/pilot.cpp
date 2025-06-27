@@ -2,6 +2,10 @@
 #include "../include/pilot.hpp"
 using namespace std;
 
+Pilot::Pilot(const string& name, int age, const string& license, int hours):Person(name,age),licenseNumber(license), flightHours(hours){}
+void Pilot::fly() const{
+    cout<<name <<" está pilotando o avião! ( Licença: "<<licenseNumber<< " ) "<<endl;
+}
 
 Pilot::Pilot(const string& name, int age, const string& license, const string& registration, int hours):Person(name,age),licenseNumber(license),registration(registration), flightHours(hours){}
 void Pilot::fly() const{
@@ -45,3 +49,4 @@ std::string Pilot::serializer() const {
 
     return oss.str();
 }
+

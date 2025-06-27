@@ -1,2 +1,9 @@
+# Test files and tmp
 *_test*
+*_tmp*
+# Directories
+build/
+# Binaries
+airline_system
+# Edtors
 .vscode

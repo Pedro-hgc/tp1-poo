@@ -1,9 +1,7 @@
 #pragma once 
 #include"person.hpp"
-#include "pilot.hpp"
 
-
-class Pilot : public Person{
+class Pilot : public Person {
     private:
         std ::string licenseNumber;
         int flightHours;

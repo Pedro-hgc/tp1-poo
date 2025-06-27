@@ -3,7 +3,6 @@
 #include <string>
 
 class Airplane {
-
 private:
 
     float autonomyHours;

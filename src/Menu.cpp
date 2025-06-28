@@ -1,6 +1,5 @@
 #include "../include/Menu.hpp"
 #include "../include/InputUtils.hpp"
-#include <format>
 
 Menu::Menu() {
     this->system = new AirlineSystem();

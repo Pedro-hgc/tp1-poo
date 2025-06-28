@@ -6,19 +6,19 @@ Airplane::Airplane() {}
 Airplane::Airplane(const std::string& c, const std::string& m,
                    int cap, float mv, float ha){
 
-    autonomyHours = ha;
-    mediumVelocity = mv;
-    capacity = cap;
     cod = c;
     model = m;
+    capacity = cap;
+    mediumVelocity = mv;
+    autonomy = ha;
 }
 Airplane::~Airplane() {
     std::cout << "Destructor called to Airplane " << this->cod << std::endl;
 }
 
 // Setters Implementation
-void Airplane::setAutonomyHours(float autonomyHours) {
-    this->autonomyHours = autonomyHours;
+void Airplane::setAutonomy(float autonomy) {
+    this->autonomy= autonomy;
 }
 void Airplane::setMediumVelocity(float mediumVelocity) {
     this->mediumVelocity = mediumVelocity;
@@ -34,8 +34,8 @@ void Airplane::setModel(const std::string model) {
 }
 
 // Getters Implementation
-float Airplane::getAutonomyHours() const {
-    return autonomyHours;
+float Airplane::getAutonomy() const {
+    return autonomy;
 }
 float Airplane::getMediumVelocity() const {
     return mediumVelocity;
@@ -57,7 +57,7 @@ std::string Airplane::serializer() const {
         << this->model          << ","
         << this->capacity       << ","
         << this->mediumVelocity << ","
-        << this->autonomyHours  << std::endl;
+        << this->autonomy<< std::endl;
 
     return oss.str();
 }
@@ -67,5 +67,5 @@ void Airplane::showDetails() const {
     std::cout << "Modelo do avião: "  << model << std::endl;
     std::cout << "Capacidade do avião: "  << capacity << std::endl;
     std::cout << "Velocidade Media do avião: "  << mediumVelocity << std::endl;
-    std::cout << "Autonomia do avião: "  << autonomyHours << std::endl;
+    std::cout << "Autonomia do avião: "  << autonomy << std::endl;
 }

@@ -5,7 +5,7 @@
 class Airplane {
 private:
 
-    float autonomyHours;
+    float autonomy;
     float mediumVelocity;
     int capacity;
     std::string cod;
@@ -22,14 +22,14 @@ public:
         ~Airplane();
 
         // Setters
-        void setAutonomyHours(float);
+        void setAutonomy(float);
         void setMediumVelocity(float);
         void setCapacity(int);
         void setCode(const std::string );
         void setModel(const std::string );
 
         // Getters
-        float getAutonomyHours() const;
+        float getAutonomy() const;
         float getMediumVelocity() const;
         int getCapacity() const;
         std::string getCode() const;

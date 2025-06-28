@@ -63,8 +63,8 @@ public:
         void addPassenger(Passenger*);
         void removePassenger(Passenger*);
 
-        float calculateDuration();
-        int calculateScalesNumber();
+        float calculateAndSetDuration();
+        int calculateAndSetScalesNumber();
 
         std::string serializer() const;
         void showData() const;

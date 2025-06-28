@@ -93,14 +93,31 @@ void Flight::removePassenger(Passenger* passenger) {
     std::cout << "TODO: Remove Passenger" << std::endl;
 }
 
-float Flight::calculateDuration() {
-    std::cout << "TOOD: calculateDuration()" << std::endl;
+float Flight::calculateAndSetDuration() {
+    float velocity = this->airplane->getMediumVelocity();
+    float distance = std::stof(this->distance);
+    float duration = (distance/velocity);
+    duration += this->scalesNumber;
+
+    this->estimatedDuration = duration;
+    return this->estimatedDuration;
+
     return 0;
 }
 
-int Flight::calculateScalesNumber(){
-   std::cout << "TODO: calculateScalesNumber()" << std::endl;
-   return -1;
+int Flight::calculateAndSetScalesNumber(){
+    float autonomy = this->airplane->getAutonomy();
+    if (autonomy <= 0) throw std::runtime_error("Autonomy must be positive!");
+
+    float distance = std::stof(this->distance);
+    float scales = distance/autonomy;
+
+    // Rounds up if has a decimal portion != 0
+    if (scales / ((int) scales) != 1)
+        scales++;
+
+    this->scalesNumber = (int) scales - 1;
+    return this->scalesNumber;
 }
 
 std::string Flight::serializer() const {

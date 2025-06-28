@@ -19,6 +19,22 @@ AirlineSystem::~AirlineSystem() {
     }
 }
 
+Airplane* AirlineSystem::getAirplane(std::string cod) {
+    for (Airplane* airplane: airplanes) {
+        if (cod == airplane->getCode())
+            return airplane;
+    }
+    return NULL;
+}
+Pilot* AirlineSystem::getPilot(std::string licenseNumber){
+    for (Pilot* pilot: pilots){
+        if (licenseNumber == pilot->licenseNumber);
+    }
+}
+Passenger* getPassenger(std::string ticketNumber);
+Flight*    getFlight(std::string code);
+
+
 // The plane in newAirplane only gets here after is created
 // in the Menu, so there is not really a way to have a invalid
 // Airplane at this point, because the Menu would not let this

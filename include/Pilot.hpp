@@ -1,14 +1,29 @@
 #pragma once 
-#include "Person.hpp"
+#include"Person.hpp"
 
-class Pilot : public Person {
-    private:
-        std ::string licenseNumber;
-        int flightHours;
-    public:
-        Pilot(const std:: string& name, int age, const std :: string& license, int hours);
+class Pilot : public Person{
+
+private:
+    std::string licenseNumber;
+    std::string registration;
+    int flightHours;
         
-        //Pilot-specifc methods        
-        void fly()const;
-        void displayInfo() const;
+public:
+    Pilot(const std:: string& name, int age, const std :: string& licenseNumber, const std::string& registration, int hours);
+        
+    std::string getLicense() const;
+    std::string getRegistration() const;
+    int getHours();
+ 
+    void setLicense(const std::string& licenseNumber);
+    void setRegistration(const std::string registration);
+    void setHours(int hours);
+
+    
+
+    std::string serializer() const override; 
+    void displayInfo() const override;
+    //Pilot-specifc methods        
+    void fly()const;
+    
 };

@@ -3,6 +3,7 @@
 #include <string>
 
 class Airplane {
+
 private:
 
     float autonomy;

@@ -1,21 +1,24 @@
 #pragma once 
-#include "person.hpp"
+#include "Person.hpp"
 
 class Passenger : public Person{
     protected:
         std :: string ticketNumber;
-        std :: string seatAssignment;
+        std :: string cpf;
     public:
-        PassengetPassenger(const std:: string& name, int age,  const std::string& ticket, const std::string& cpf);
+        Passenger(const std:: string& name, const std::string& cpf, const std::string& ticket);
         virtual ~Passenger() = default;
         std::string serializer() const;
         
-        std::string Passenger::getCPF() const;
+        std::string getCPF() const;
+        std::string getTicket() const;
 
-        void Passenger::setCPF(const std::string cpf);
+        void setCPF(const std::string cpf);
+        void setTicket(const std::string ticket);
         
-        
+        virtual void displayInfo() const override;
+        std::string serialize() const; 
         //Passenger-Specific methods
         void board() const;
-        virtual void displayInfo() const override;
+        
 };

@@ -5,7 +5,7 @@ class Person {
 protected:
     std::string name;
     int age;
-    std::string cpf;
+   
     
 public:
     Person(const std::string& name, int age);
@@ -20,7 +20,7 @@ public:
     void setName(const std::string& name);
     void setAge(int age);
 
-    std::string serializer() const;
+    virtual std::string serializer() const;
     virtual void displayInfo() const;
 };
 

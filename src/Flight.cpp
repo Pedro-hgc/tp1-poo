@@ -1,4 +1,5 @@
 #include "../include/Flight.hpp"
+#include <iostream>
 
 // Constructors
 Flight::Flight(){};
@@ -125,6 +126,14 @@ std::string Flight::serializer() const {
 }
 
 void Flight::showData() const {
-    std::cout << "Airplane:" << std::endl;
-    this->airplane->showDetails();
+    std::cout << "Código do voo: " << this->code << std::endl;
+    std::cout << "Código da Aeronave: " << this->airplane->getCode() << std::endl;
+    std::cout << "Modelo da Aeronave: " << this->airplane->getModel() << std::endl;
+    std::cout << "Matricula do Comandante: " << this->pilot->getRegistration() << std::endl;
+    std::cout << "Origem: " << this->origin << std::endl;
+    std::cout << "Destino: " << this->destination << std::endl;
+    std::cout << "Numero de Passageiros: " << this->passengers.size() << std::endl;
+    std::cout << "Data e Hora de saída: " << this->departureDate << std::endl;
+    std::cout << "Data e Hora de chegada: " << this->arrivalDate << std::endl;
+
 }

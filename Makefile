@@ -15,7 +15,7 @@ INCLUDE_DIR := include
 BUILD_DIR := build
 
 #	Source and object files
-SRCS := $(wildcard $(SRC_DIR)/*.cpp) main.cpp
+SRCS := $(wildcard $(SRC_DIR)/*.cpp) Main.cpp
 OBJS := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(notdir $(SRCS)))
 DEPS := $(wildcard $(INCLUDE_DIR)/*.hpp)
 
@@ -34,7 +34,7 @@ $(TARGET): $(OBJS)
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/main.o: main.cpp $(DEPS)
+$(BUILD_DIR)/Main.o: Main.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:

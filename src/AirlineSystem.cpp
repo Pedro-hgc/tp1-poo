@@ -1,4 +1,5 @@
 #include "../include/AirlineSystem.hpp"
+#include <iostream>
 
 // Nothing in constructor because The system will increase
 // with user input
@@ -28,12 +29,31 @@ Airplane* AirlineSystem::getAirplane(std::string cod) {
 }
 Pilot* AirlineSystem::getPilot(std::string licenseNumber){
     for (Pilot* pilot: pilots){
-        if (licenseNumber == pilot->licenseNumber);
+        if (licenseNumber == pilot->getLicense())
+            return pilot;
     }
-}
-Passenger* getPassenger(std::string ticketNumber);
-Flight*    getFlight(std::string code);
+    return NULL;
 
+}
+Passenger* AirlineSystem::getPassenger(std::string cpf) {
+    for (Passenger* passenger: passengers){
+        if (cpf == passenger->getCPF())
+            return passenger;
+    }
+    return NULL;
+
+}
+Flight* AirlineSystem::getFlight(std::string code) {
+    for (Flight* flight : flights_avaibles) {
+        if (flight->getCode() == code)
+            return flight;
+    }
+    return NULL;
+}
+
+int AirlineSystem::getNumOfPassengers(void) {
+    return this->passengers.size();
+}
 
 // The plane in newAirplane only gets here after is created
 // in the Menu, so there is not really a way to have a invalid
@@ -89,6 +109,6 @@ void AirlineSystem::showPassengers(void) {
 void AirlineSystem::showFlightsAvaibles(void) {
     for (Flight* flight: flights_avaibles) {
         flight->showData();
-        std::cout << std::endl << std::endl;
+        std::cout <<  "================================="<< std::endl << std::endl;
     }
 }

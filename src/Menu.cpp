@@ -1,5 +1,6 @@
 #include "../include/Menu.hpp"
 #include "../include/InputUtils.hpp"
+#include <iostream>
 
 Menu::Menu() {
     this->system = new AirlineSystem();
@@ -49,11 +50,12 @@ bool Menu::registerPilot(void) {
 
     int age = InputUtils::safeGetInt("Digite a idade de " + name + ": ");
 
-    std::string license = InputUtils::safeGetLine("Digite a Licença de " + name + ": ");
+    std::string registration = InputUtils::safeGetLine("Digite a Matricula de " + name + ": ");
+    std::string license = InputUtils::safeGetLine("Digite o Brevê de " + name + ": ");
 
     int hours = InputUtils::safeGetInt("Digite quantas Horas " + name + " já voou: ");
 
-    Pilot* pilot = new Pilot(name, age, license, hours);
+    Pilot* pilot = new Pilot(name, age, license, registration, hours);
 
     return this->system->registerNewPilot(pilot);
 }
@@ -64,8 +66,9 @@ bool Menu::registerPassenger(void) {
     int age = InputUtils::safeGetInt("Digite a idade de " + name + ": ");
 
     std::string ticket = InputUtils::safeGetLine("Digite o número do bilhete de " + name + ": ");
+    std::string cpf = InputUtils::safeGetLine("Digite o CPF de " + name + ": ");
 
-    Passenger* passenger = new Passenger(name, age, ticket, "");
+    Passenger* passenger = new Passenger(name, age, ticket, cpf);
 
     return this->system->registerNewPassenger(passenger);
 }
@@ -74,6 +77,9 @@ bool Menu::registerNewFlight() {
     std::string code = InputUtils::safeGetLine("Digite o código do voo: ");
     std::string origin = InputUtils::safeGetLine("Digite a origem do voo: ");
     std::string destination = InputUtils::safeGetLine("Digite o destino do voo: ");
+    std::string distance = InputUtils::safeGetLine("Digite a Distância do voo: ");
+    std::string departureTime= InputUtils::safeGetLine("Digite a Data e Hora de saída Prevista: ");
+    std::string arrivalTime = InputUtils::safeGetLine("Digite a Data e Hora de chegada Estimada: ");
 
     std::cout << "Escolha entre uma das Aeronaves abaixo através do código:" << std::endl;
     this->system->showAirplanes();
@@ -86,13 +92,59 @@ bool Menu::registerNewFlight() {
 
     Pilot* pilot = NULL, *copilot = NULL;
 
-    std::cout << "Escolha um dos Pilotos abaixo para ser o Comandante do voo: ";
+    std::cout << "Escolha um dos Pilotos abaixo para ser o Comandante do voo: " << std::endl;
     this->system->showPilots();
     while (pilot == NULL){
         std::string license = InputUtils::safeGetLine("Digite a licença do Comandante Escolhido: ");
         pilot = this->system->getPilot(license);
+
+    }
+    std::cout << "Comandante " << pilot->getName() << " escolhido!" << std::endl;
+
+    std::cout << "Agora escolha outro Piloto para ser o Primeiro Oficial do voo: " << std::endl;
+    while (copilot == NULL || copilot->getLicense() == pilot->getLicense()){
+        std::string license = InputUtils::safeGetLine("Digite a licença do Primeiro Oficial Escolhido: ");
+        copilot = this->system->getPilot(license);
+
+    }
+    std::cout << "Primeiro Oficial " << copilot->getName() << "escolhido!" << std::endl;
+
+
+    Flight* newFlight = new Flight(code, origin, destination, airplaneChosen, pilot, copilot );
+
+    newFlight->setDistance(distance);
+    newFlight->setDepartureDate(departureTime);
+    newFlight->setArrivalDate(arrivalTime);
+    newFlight->calculateAndSetDuration();
+    newFlight->calculateAndSetScalesNumber();
+
+    if (this->system->getNumOfPassengers() != 0) {
+        std::cout << "Escolha os Passageiros abaixo que deseja embarcar" << std::endl;
+        this->system->showPassengers();
+
+        std::string  cpfOfPassenger;
+        do {
+            Passenger* passengerToEmbark;
+            cpfOfPassenger = InputUtils::safeGetLine("Digite o CPF do Passageiro para embarca-lo ou FIM caso queira parar: ");
+            passengerToEmbark = this->system->getPassenger(cpfOfPassenger);
+            if (passengerToEmbark != NULL){
+                newFlight->addPassenger(passengerToEmbark);
+                std::cout << "Passageiro " <<  passengerToEmbark->getName() << " embarcado!" << std::endl;
+            }
+        }while(cpfOfPassenger != "FIM");
     }
 
 
+    this->system->registerNewFlight(newFlight);
+    return true;
+
+}
+
+void Menu::boardPassenger(void) {
+    return;
+}
+void Menu::showFlightsList(void) {
+    std::cout << "Os voos registrados são: " << std::endl << std::endl;
+    this->system->showFlightsAvaibles();
 
 }

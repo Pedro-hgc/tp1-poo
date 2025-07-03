@@ -43,7 +43,9 @@ public:
         // This is used to get ONE element from the Vectors
         Airplane*  getAirplane(std::string cod);
         Pilot*     getPilot(std::string licenseNumber);
-        Passenger* getPassenger(std::string ticketNumber);
+        Passenger* getPassenger(std::string cpf);
         Flight*    getFlight(std::string code);
+
+        int getNumOfPassengers(void);
 
 };

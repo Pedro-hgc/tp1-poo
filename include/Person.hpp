@@ -21,7 +21,7 @@ public:
     void setName(const std::string& name);
     void setAge(int age);
 
-    virtual std::string serializer() const;
+    virtual std::string serialize() const;
     virtual void displayInfo() const;
 };
 

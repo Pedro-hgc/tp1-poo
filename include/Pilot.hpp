@@ -13,15 +13,15 @@ public:
         
     std::string getLicense() const;
     std::string getRegistration() const;
-    int getHours();
+    int getHours() const;
  
     void setLicense(const std::string& licenseNumber);
-    void setRegistration(const std::string registration);
+    void setRegistration(const std::string& registration);
     void setHours(int hours);
 
     
 
-    std::string serializer() const override; 
+    std::string serializer() const ;
     void displayInfo() const override;
     //Pilot-specifc methods        
     void fly()const;

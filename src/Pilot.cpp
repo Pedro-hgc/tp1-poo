@@ -1,44 +1,44 @@
-#include <iostream>
 #include "../include/Pilot.hpp"
-using namespace std;
+#include <sstream>
+#include <iostream>
 
-Pilot::Pilot(const string& name, int age, const string& license, const string& registration, int hours)
+Pilot::Pilot(const std::string& name, int age, const std::string& license, const std::string& registration, int hours)
         :Person(name,age),licenseNumber(license),registration(registration), flightHours(hours){}
 void Pilot::fly() const{
-    cout<<name <<" está pilotando o avião! ( Breve: "<<licenseNumber<< " Matricula:" << registration<< ")" <<endl;
+    std::cout<<name <<" está pilotando o avião! ( Breve: "<<licenseNumber<< " Matricula:" << registration<< ")" << std::endl;
 }
         
 void Pilot::displayInfo() const{
     Person::displayInfo();
-    cout<<"Licença: " << licenseNumber <<endl
-    <<", Breve" <<registration<<endl
-    << ", Horas de Vôo: "<< flightHours<< endl;
+    std::cout <<"Brevê: " << licenseNumber << std::endl
+    << "Matricula: " <<registration<< std::endl
+    << "Horas de Vôo: "<< flightHours<< std::endl;
 }
 
-string Pilot::getLicense()const
+std::string Pilot::getLicense()const
 {
     return licenseNumber;
 }
-string Pilot::getRegistration() const
+std::string Pilot::getRegistration() const
 {
     return registration;
 }
 int Pilot::getHours() const
 {
-    return hours;
+    return this->flightHours;
 }
 
- void Pilot::setLicense(const license)
+ void Pilot::setLicense(const std::string& license)
 {
-    licenseNumber=license;
+    this->licenseNumber=license;
 }
 void Pilot::setHours(int hours)
 {  
-    this->hours = hours;
+    this->flightHours= hours;
 }
-void Pilot::setRegistration(const string& registration) 
+void Pilot::setRegistration(const std::string& registration)
 { 
-    this->resitration = registration; 
+    this->registration = registration;
 }
 
 std::string Pilot::serializer() const {

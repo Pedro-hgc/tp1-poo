@@ -1,5 +1,6 @@
 #include "../include/Person.hpp"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -28,10 +29,10 @@ void Person::setAge(int age)
     this->age = age; 
 }
 
-string Person::sreialize() const{
-    ostringstream oss;
+std::string Person::serialize() const {
+    std::ostringstream oss;
     oss<< name << ","<<age;
-    retrun oss.str();
+    return oss.str();
 }
 
 void Person::displayInfo() const {

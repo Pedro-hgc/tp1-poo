@@ -87,12 +87,23 @@ std::string Flight::getCode() const {
 }
 
 // Methods
-void Flight::addPassenger(Passenger* new_passenger) {
-    passengers.push_back(new_passenger);
+bool Flight::addPassenger(Passenger* newPassenger) {
+    // Checks if can't add New passenger because of capacity
+    if ((int)this->passengers.size() + 1 > this->airplane->getCapacity()) {
+        std::cout << "Impossível embarcar um novo passageiro: Capacidade Máxima Excedida!" << std::endl;
+        return false;
+    }
+
+    // Check if passenger is already in Flight
+    for (Passenger* passenger : passengers) {
+        if (passenger->getCPF() == newPassenger->getCPF()) {
+            std::cout << "Passageiro " << newPassenger->getName() << " já está a bordo deste Voo!" << std::endl;
+            return false;
+        }
+    }
+    this->passengers.push_back(newPassenger); return true;
 }
-void Flight::removePassenger(Passenger* passenger) {
-    std::cout << "TODO: Remove Passenger" << std::endl;
-}
+
 
 float Flight::calculateAndSetDuration() {
     float velocity = this->airplane->getMediumVelocity();

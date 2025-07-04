@@ -60,8 +60,7 @@ public:
         std::string getCode() const;
 
         // Methods
-        void addPassenger(Passenger*);
-        void removePassenger(Passenger*);
+        bool addPassenger(Passenger*);
 
         float calculateAndSetDuration();
         int calculateAndSetScalesNumber();

@@ -141,10 +141,56 @@ bool Menu::registerNewFlight() {
 }
 
 void Menu::boardPassenger(void) {
-    return;
+    std::cout << " --------- Os voos registrados são --------- " << std::endl << std::endl;
+    this->system->showFlightsAvaibles();
+    std::string code;
+    Flight *flightSelected = NULL;
+    do {
+        code = InputUtils::safeGetLine("Selecione um dos Voos registrados através do código: ");
+        flightSelected = this->system->getFlight(code);
+    } while (flightSelected == NULL && code != "VOLTAR");
+
+    std::cout << std::endl << "-------- Os Passageiros registrados são --------" << std::endl << std::endl;
+    this->system->showPassengers();
+
+    if (flightSelected == NULL) return;
+
+    Passenger* passengerSelected = NULL;
+    do {
+        code = InputUtils::safeGetLine("Digite o CPF do passageiro a embarcar: ");
+        passengerSelected = this->system->getPassenger(code);
+        if (passengerSelected != NULL){
+            if (flightSelected->addPassenger(passengerSelected))
+                std::cout << "Passageiro " << passengerSelected->getName() << " adicionado ao voo " << flightSelected->getCode() << " com sucesso!" << std::endl;
+            else
+                return;
+        }
+    }while (code != "FIM");
 }
+
 void Menu::showFlightsList(void) {
-    std::cout << "Os voos registrados são: " << std::endl << std::endl;
+    std::cout << " --------- Os voos registrados são --------- " << std::endl << std::endl;
     this->system->showFlightsAvaibles();
 
+}
+
+void Menu::showPassengersOfFlight(void) {
+    std::cout << " --------- Os voos registrados são --------- " << std::endl << std::endl;
+    this->system->showFlightsAvaibles();
+    std::string code;
+    Flight *flightSelected = NULL;
+    do {
+        code = InputUtils::safeGetLine("Selecione um dos Voos registrados através do código: ");
+        flightSelected = this->system->getFlight(code);
+    } while (flightSelected == NULL && code != "VOLTAR");
+
+    std::cout << "Código da Aeronave: " << flightSelected->getAirplane()->getCode() << std::endl;
+    std::cout << "Modelo da Aeronave: " << flightSelected->getAirplane()->getModel() << std::endl;
+
+    std::vector<Passenger*> passenger = flightSelected->getPassengers();
+
+
+    std::cout << "------- Nome dos Passageiros A bordo -------" << std::endl;
+    for (Passenger* p: passenger)
+        std::cout << p->getName() << std::endl;
 }

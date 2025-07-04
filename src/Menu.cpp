@@ -1,6 +1,9 @@
 #include "../include/Menu.hpp"
 #include "../include/InputUtils.hpp"
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <sys/stat.h>
 
 Menu::Menu() {
     this->system = new AirlineSystem();
@@ -19,8 +22,7 @@ MenuOption Menu::displayMenu(void) {
     std::cout << "5. Embarcar Passageiro" << std::endl;
     std::cout << "6. Listar voos" << std::endl;
     std::cout << "7. Listar Passageiros de um voo" << std::endl;
-    std::cout << "8. Gerar relatórios e estatísticas" << std::endl;
-    std::cout << "9. Salvar dados e sair" << std::endl;
+    std::cout << "8. Salvar dados e sair" << std::endl;
     std::cout << "============================================" << std::endl;
 
 
@@ -193,4 +195,31 @@ void Menu::showPassengersOfFlight(void) {
     std::cout << "------- Nome dos Passageiros A bordo -------" << std::endl;
     for (Passenger* p: passenger)
         std::cout << p->getName() << std::endl;
+}
+
+void Menu::saveAndExit(void) {
+    std::vector<std::string> peopleSerialized = this->system->serializePeople();
+    std::vector<std::string> flightsSerialized = this->system->serializeFlights();
+    std::vector<std::string> airplanesSerialized = this->system->serializeAirplanes();
+    // Função lambda para salvar vetor em arquivo
+    auto saveToFile = [](const std::string& path, const std::vector<std::string>& lines) {
+        std::ofstream file(path);
+        if (!file.is_open()) {
+            throw std::runtime_error("Não foi possível abrir o arquivo: " + path);
+        }
+
+        for (const auto& line : lines) {
+            file << line << '\n';
+        }
+
+        file.close();
+    };
+
+    try {
+        saveToFile("../csv/pessoas.csv", peopleSerialized);
+        saveToFile("../csv/voos.csv", flightsSerialized);
+        saveToFile("../csv/aeronaves.csv", airplanesSerialized);
+    } catch (const std::exception& e) {
+        std::cerr << "Erro ao salvar os arquivos: " << e.what() << std::endl;
+    }
 }

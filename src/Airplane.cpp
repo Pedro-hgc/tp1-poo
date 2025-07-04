@@ -57,7 +57,7 @@ std::string Airplane::serializer() const {
         << this->model          << ","
         << this->capacity       << ","
         << this->mediumVelocity << ","
-        << this->autonomy<< std::endl;
+        << this->autonomy;
 
     return oss.str();
 }

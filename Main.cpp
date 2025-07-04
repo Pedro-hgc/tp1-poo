@@ -41,13 +41,9 @@ int main(void) {
             case MenuOption::PASSENGERS_OF_FLIGHT:
                 systemMenu.showPassengersOfFlight();
                 break;
-/*
-            case MenuOption::GENERATE_STATICS:
-                systemMenu.generateStatics();
-                break;
-            case MenuOption::SAVE_AND_EXIT:
+           case MenuOption::SAVE_AND_EXIT:
                 systemMenu.saveAndExit();
-                break;*/
+                break;
             default:
                     break;
         }

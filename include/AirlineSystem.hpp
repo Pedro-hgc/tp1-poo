@@ -27,7 +27,6 @@ public:
         bool registerNewPilot(Pilot* newPilot);
         bool registerNewPassenger(Passenger* newPassenger);
         bool registerNewFlight(Flight* newFlight);
-        bool boardPassenger(Passenger* passengerToBoard);
 
         // This is used to get the INFO from All elements.
         // Will be used by menu to show: the Passengers Registered
@@ -48,5 +47,9 @@ public:
         Flight*    getFlight(std::string code);
 
         int getNumOfPassengers(void);
+
+        std::vector<std::string>serializeAirplanes(void);
+        std::vector<std::string>serializePeople(void);
+        std::vector<std::string>serializeFlights(void);
 
 };

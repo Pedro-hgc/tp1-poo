@@ -10,8 +10,7 @@ enum class MenuOption {
     BOARD_PASSENGER      = 5,
     LIST_FLIGHTS         = 6,
     PASSENGERS_OF_FLIGHT = 7,
-    GENERATE_STATICS     = 8,
-    SAVE_AND_EXIT        = 9,
+    SAVE_AND_EXIT        = 8,
 };
 
 class Menu {
@@ -29,7 +28,6 @@ public:
         void boardPassenger         (void);
         void showFlightsList        (void);
         void showPassengersOfFlight (void);
-        void generateStatics        (void);
         void saveAndExit            (void);
 
 };

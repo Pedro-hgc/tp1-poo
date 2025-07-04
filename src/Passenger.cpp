@@ -34,9 +34,10 @@ void Passenger::displayInfo() const{
 }
 std::string Passenger::serializer() const {
     std::ostringstream oss;
-    oss << Person::serialize()<< ","
-        <<ticketNumber<< ","
-        <<cpf<<endl;
+    oss << "passageiro" << ","
+        << this->name << ","
+        << this->cpf  << ","
+        << this->ticketNumber;
 
     return oss.str();
 }

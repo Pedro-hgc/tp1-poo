@@ -1,5 +1,6 @@
 #include "../include/Flight.hpp"
 #include <iostream>
+#include <sstream>
 
 // Constructors
 Flight::Flight(){};
@@ -133,7 +134,19 @@ int Flight::calculateAndSetScalesNumber(){
 }
 
 std::string Flight::serializer() const {
-    return "TODO: serializer()\n" ;
+    std::ostringstream oss;
+    oss << this->airplane->serializer() << ","
+        << this->airplane->getCode() << ","
+        << this->departureDate << ","
+        << this->scalesNumber << ","
+        << this->estimatedDuration<< ","
+        << this->pilot->serializer() << ","
+        << this->copilot->serializer() << ",";
+
+    for (Passenger* p: passengers)
+        oss << p->getCPF() << ",";
+
+    return oss.str();
 }
 
 void Flight::showData() const {

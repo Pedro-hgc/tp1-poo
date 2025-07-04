@@ -43,9 +43,12 @@ void Pilot::setRegistration(const std::string& registration)
 
 std::string Pilot::serializer() const {
     std::ostringstream oss;
-    oss << this->licenseNumber<< ","
+    oss
+        << "piloto" << ","
+        << this->name << ","
         << this->registration<< ","
-        << this->flightHours<<std::endl;
+        << this->licenseNumber<< ","
+        << this->flightHours;
     return oss.str();
 }
 

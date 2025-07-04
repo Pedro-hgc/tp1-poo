@@ -3,7 +3,9 @@
 
 // Nothing in constructor because The system will increase
 // with user input
-AirlineSystem::AirlineSystem(){}
+AirlineSystem::AirlineSystem(){
+    std::cout << "INFO: Construido O sistema de Linhas Aereas" << std::endl;
+}
 
 // Destroying every element from the vectors
 AirlineSystem::~AirlineSystem() {
@@ -83,10 +85,7 @@ bool AirlineSystem::registerNewFlight(Flight* newFlight) {
 
     this->flights_avaibles.push_back(newFlight); return true;
 }
-bool boardPassenger(Passenger* passengerToBoard) {
-    std::cout << "TODO: boardPassenger()" << std::endl;
-    return false;
-}
+
 
 void AirlineSystem::showAirplanes(void) {
     for (Airplane* airplane: airplanes) {
@@ -111,4 +110,29 @@ void AirlineSystem::showFlightsAvaibles(void) {
         flight->showData();
         std::cout <<  "================================="<< std::endl << std::endl;
     }
+}
+std::vector<std::string> AirlineSystem::serializeAirplanes(void) {
+
+    std::vector<std::string> serialization;
+    for (Airplane* ap : this->airplanes) {
+        serialization.push_back(ap->serializer());
+    }
+
+    return serialization;
+}
+std::vector<std::string>AirlineSystem::serializePeople(void) {
+    std::vector<std::string> serialization;
+    for (Pilot* p : pilots)
+        serialization.push_back(p->serializer());
+    for (Passenger* p: passengers)
+        serialization.push_back(p->serializer());
+
+    return serialization;
+}
+std::vector<std::string>AirlineSystem::serializeFlights(void) {
+    std::vector<std::string> serialization;
+    for (Flight* f: flights_avaibles)
+        serialization.push_back(f->serializer());
+
+    return serialization;
 }
